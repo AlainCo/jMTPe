@@ -21,6 +21,9 @@
 #include <PortableDevice.h>
 #include <list>
 
+#include <atlbase.h>
+#include <atlstr.h>
+
 #include "jmtp.h"
 #include "jmtp_PortableDeviceContentImplWin32.h"
 
@@ -307,3 +310,4 @@ JNIEXPORT jobject JNICALL Java_jmtp_PortableDeviceContentImplWin32_getObjectIDsF
 		return NULL;
 	}
 }
+
