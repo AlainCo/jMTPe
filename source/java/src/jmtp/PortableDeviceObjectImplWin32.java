@@ -147,7 +147,9 @@ class PortableDeviceObjectImplWin32 implements PortableDeviceObject {
     			throw new UnsupportedOperationException("Couldn't change the property.");
     		}
     	}
-    	catch(COMException e) {}
+    	catch(COMException e) {
+    		e.printStackTrace();
+		}
     }
     
     protected boolean retrieveBooleanValue(PropertyKey key) {

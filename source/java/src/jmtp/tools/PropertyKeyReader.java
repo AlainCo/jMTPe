@@ -90,7 +90,9 @@ public class PropertyKeyReader {
     				reader.close();
     		}
     	}
-    	catch(IOException e) {}
+    	catch(IOException e) {
+    		e.printStackTrace();
+		}
     }
     
     private void processPropertyKey(String name, String[] arguments) {

@@ -85,7 +85,9 @@ class PortableDeviceManagerImplWin32 implements PortableDeviceManagerProxy {
         try {
             refreshDeviceListImpl();
         }
-        catch(COMException e) {}
+        catch(COMException e) {
+            e.printStackTrace();
+        }
     }
 
     public Iterator<PortableDevice> iterator() {
