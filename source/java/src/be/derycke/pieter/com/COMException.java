@@ -72,7 +72,7 @@ public class COMException extends Exception {
     }
     
     public long getHresult() {
-        return hresult & 0xffffffffl;
+        return hresult & 0xffffffffL;
     }
     
     //(((hr) >> 31) & 0x1)
