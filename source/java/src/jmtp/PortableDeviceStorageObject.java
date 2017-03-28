@@ -20,16 +20,15 @@
 package jmtp;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Date;
 
 public interface PortableDeviceStorageObject extends PortableDeviceFunctionalObject {
 	PortableDeviceObject[] getChildObjects();
-	PortableDeviceAudioObject addAudioObject(File bestand, String artist, String title, BigInteger duration) throws FileNotFoundException, IOException;
+	PortableDeviceAudioObject addAudioObject(File bestand, String artist, String title, BigInteger duration) throws IOException;
     PortableDeviceAudioObject addAudioObject(File file, String artist, String title, BigInteger duration, String genre, String album, Date releaseDate,
-		int track) throws FileNotFoundException, IOException;
+		int track) throws IOException;
     PortableDevicePlaylistObject createPlaylistObject(String name, PortableDeviceObject[] references);
 	PortableDeviceFolderObject createFolderObject(String name);
 	

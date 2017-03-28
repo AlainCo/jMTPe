@@ -97,14 +97,14 @@ abstract class AbstractPortableDeviceContainerImplWin32 extends PortableDeviceOb
 	}
 	
 	public PortableDeviceAudioObject addAudioObject(File file,
-			String artist, String title, BigInteger duration) throws FileNotFoundException, IOException {
+			String artist, String title, BigInteger duration) throws IOException {
 		
 		return addAudioObject(file, artist, title, duration, null, null, null, -1);
 	}
 	
 	public PortableDeviceAudioObject addAudioObject(File file,
 			String artist, String title, BigInteger duration, 
-			String genre, String album, Date releaseDate, int track) throws FileNotFoundException, IOException {
+			String genre, String album, Date releaseDate, int track) throws IOException {
 		
 		try {
 			PortableDeviceValuesImplWin32 values = new PortableDeviceValuesImplWin32();
