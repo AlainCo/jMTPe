@@ -24,5 +24,5 @@ package be.derycke.pieter.com;
  * @author Pieter De Rycke
  */
 public interface COMReferenceable {
-    public COMReference getReference();
+    COMReference getReference();
 }

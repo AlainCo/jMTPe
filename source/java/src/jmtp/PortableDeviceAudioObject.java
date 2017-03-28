@@ -27,23 +27,23 @@ import java.util.Date;
  * @author Pieter De Rycke
  */
 public interface PortableDeviceAudioObject extends PortableDeviceObject {
-    public String getTitle();
-    public String getArtist();
-    public String getAlbumArtist();
-    public String getAlbum();
-    public String getGenre();
-    public BigInteger getDuraction();
-    public Date getReleaseDate();
-    public int getTrackNumber();
-    public long getUseCount();
+    String getTitle();
+    String getArtist();
+    String getAlbumArtist();
+    String getAlbum();
+    String getGenre();
+    BigInteger getDuraction();
+    Date getReleaseDate();
+    int getTrackNumber();
+    long getUseCount();
     
-    public void setTitle(String value);
-    public void setArtist(String value);
-    public void setAlbumArtist(String value);
-    public void setAlbum(String value);
-    public void setGenre(String value);
-    public void setDuration(BigInteger value);
-    public void setReleaseDate(Date value);
-    public void setTrackNumber(int value);
-    public void setUseCount(long value);
+    void setTitle(String value);
+    void setArtist(String value);
+    void setAlbumArtist(String value);
+    void setAlbum(String value);
+    void setGenre(String value);
+    void setDuration(BigInteger value);
+    void setReleaseDate(Date value);
+    void setTrackNumber(int value);
+    void setUseCount(long value);
 }

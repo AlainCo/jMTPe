@@ -26,23 +26,20 @@ import java.math.BigInteger;
 import java.util.Date;
 
 public interface PortableDeviceStorageObject extends PortableDeviceFunctionalObject {
-	public PortableDeviceObject[] getChildObjects();
-	public PortableDeviceAudioObject addAudioObject(File bestand, 
-			String artist, String title, BigInteger duration) throws FileNotFoundException, IOException;
-    public PortableDeviceAudioObject addAudioObject(File file,
-			String artist, String title, BigInteger duration, 
-			String genre, String album, Date releaseDate, int track) throws FileNotFoundException, IOException;
-    public PortableDevicePlaylistObject createPlaylistObject(String name,
-    		PortableDeviceObject[] references);
-	public PortableDeviceFolderObject createFolderObject(String name);
+	PortableDeviceObject[] getChildObjects();
+	PortableDeviceAudioObject addAudioObject(File bestand, String artist, String title, BigInteger duration) throws FileNotFoundException, IOException;
+    PortableDeviceAudioObject addAudioObject(File file, String artist, String title, BigInteger duration, String genre, String album, Date releaseDate,
+		int track) throws FileNotFoundException, IOException;
+    PortableDevicePlaylistObject createPlaylistObject(String name, PortableDeviceObject[] references);
+	PortableDeviceFolderObject createFolderObject(String name);
 	
-	public String getFileSystemType();
-	public String getDescription();
-	public String getSerialNumber();
-	public BigInteger getCapacity();
-	public BigInteger getCapacityInObjects();
-	public BigInteger getFreeSpace();
-	public BigInteger getFreeSpaceInObjects();
-	public BigInteger getMaximumObjectSize();
-	public StorageType getType();
+	String getFileSystemType();
+	String getDescription();
+	String getSerialNumber();
+	BigInteger getCapacity();
+	BigInteger getCapacityInObjects();
+	BigInteger getFreeSpace();
+	BigInteger getFreeSpaceInObjects();
+	BigInteger getMaximumObjectSize();
+	StorageType getType();
 }

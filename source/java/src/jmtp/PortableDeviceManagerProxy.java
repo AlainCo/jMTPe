@@ -25,6 +25,6 @@ package jmtp;
  */
 interface PortableDeviceManagerProxy extends Iterable<PortableDevice> {
    
-    public PortableDevice[] getDevices();
-    public void refreshDeviceList();
+    PortableDevice[] getDevices();
+    void refreshDeviceList();
 }

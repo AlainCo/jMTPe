@@ -31,14 +31,11 @@ import java.util.Date;
  */
 public interface PortableDeviceFolderObject extends PortableDeviceObject {
     
-    public PortableDeviceObject[] getChildObjects();
-    public PortableDeviceAudioObject addAudioObject(File bestand, 
-    		String artist, String title, BigInteger duration) throws FileNotFoundException, IOException;
-    public PortableDeviceAudioObject addAudioObject(File file,
-			String artist, String title, BigInteger duration, 
-			String genre, String album, Date releaseDate, int track) throws FileNotFoundException, IOException;
-    public PortableDevicePlaylistObject createPlaylistObject(String name,
-    		PortableDeviceObject[] references);
-    public PortableDeviceFolderObject createFolderObject(String name);
-    public void delete(boolean recursive);
+    PortableDeviceObject[] getChildObjects();
+    PortableDeviceAudioObject addAudioObject(File bestand, String artist, String title, BigInteger duration) throws FileNotFoundException, IOException;
+    PortableDeviceAudioObject addAudioObject(File file, String artist, String title, BigInteger duration, String genre, String album, Date releaseDate,
+		int track) throws FileNotFoundException, IOException;
+    PortableDevicePlaylistObject createPlaylistObject(String name, PortableDeviceObject[] references);
+    PortableDeviceFolderObject createFolderObject(String name);
+    void delete(boolean recursive);
 }

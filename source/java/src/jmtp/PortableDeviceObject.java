@@ -30,23 +30,23 @@ import be.derycke.pieter.com.Guid;
  */
 public interface PortableDeviceObject {
     
-	public String getID();
-	public String getName();
-    public String getOriginalFileName();
-    public boolean canDelete();
-    public boolean isHidden();
-    public boolean isSystemObject();
-    public boolean isDrmProtected();
-    public Date getDateModified();
-    public Date getDateCreated();
-    public Date getDateAuthored();
-    public PortableDeviceObject getParent();
-    public BigInteger getSize();
-    public String getPersistentUniqueIdentifier();
-    public String getSyncID();
-    public Guid getFormat();
+	String getID();
+	String getName();
+    String getOriginalFileName();
+    boolean canDelete();
+    boolean isHidden();
+    boolean isSystemObject();
+    boolean isDrmProtected();
+    Date getDateModified();
+    Date getDateCreated();
+    Date getDateAuthored();
+    PortableDeviceObject getParent();
+    BigInteger getSize();
+    String getPersistentUniqueIdentifier();
+    String getSyncID();
+    Guid getFormat();
     
-    public void setSyncID(String value);	//TODO nog een exception kunnen gooien
+    void setSyncID(String value);	//TODO nog een exception kunnen gooien
     
-    public void delete();
+    void delete();
 }

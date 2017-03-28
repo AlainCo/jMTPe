@@ -21,5 +21,5 @@ package jmtp;
 
 public interface PortableDevicePlaylistObject extends PortableDeviceObject {
 	
-	public PortableDeviceObject[] getReferences();
+	PortableDeviceObject[] getReferences();
 }

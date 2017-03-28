@@ -25,22 +25,22 @@ package jmtp;
  */
 public interface PortableDevice {
     
-    public String getFriendlyName();
-    public String getManufacturer();
-    public String getDescription();
-    public void open(String appName, int appMajor, int appMinor, int appRevision);
-    public void open();
-    public void close();
-    public PortableDeviceObject[] getRootObjects();
-    public PortableDeviceObject[] getPortableDeviceObjectsFromPersistentUniqueIDs(String[] persistentUniqueIDs);
-    public PortableDeviceObject getPortableDeviceObjectsFromPersistentUniqueIDs(String persistentUniqueID);
-    public String getSerialNumber();
-    public String getFirmwareVersion();
-    public String getModel();
-    public String getProtocol();
-    public String getSyncPartner();
-    public int getPowerLevel();
-    public PortableDeviceType getType();
-    public PowerSource getPowerSource();
-    public boolean isNonConsumableSupported();
+    String getFriendlyName();
+    String getManufacturer();
+    String getDescription();
+    void open(String appName, int appMajor, int appMinor, int appRevision);
+    void open();
+    void close();
+    PortableDeviceObject[] getRootObjects();
+    PortableDeviceObject[] getPortableDeviceObjectsFromPersistentUniqueIDs(String[] persistentUniqueIDs);
+    PortableDeviceObject getPortableDeviceObjectsFromPersistentUniqueIDs(String persistentUniqueID);
+    String getSerialNumber();
+    String getFirmwareVersion();
+    String getModel();
+    String getProtocol();
+    String getSyncPartner();
+    int getPowerLevel();
+    PortableDeviceType getType();
+    PowerSource getPowerSource();
+    boolean isNonConsumableSupported();
 }
