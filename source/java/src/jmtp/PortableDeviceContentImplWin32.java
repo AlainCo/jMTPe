@@ -40,10 +40,7 @@ class PortableDeviceContentImplWin32 {
      * Door een probleem met unsigned longs (ontbreken in java, regelt de c++ dll de file groote, moet dus niet
      * ingesteld worden vanuit Java!)
      * 
-     * @param values
-     * @param file
      * @return objectId van het nieuw aangemaakte object
-     * @throws COMException
      */
     native String createObjectWithPropertiesAndData(PortableDeviceValuesImplWin32 values,
             File file) throws COMException;
@@ -62,7 +59,6 @@ class PortableDeviceContentImplWin32 {
     
     /**
      * The Cancel method cancels a pending operation called on this interface
-     * @throws be.derycke.pieter.com.COMException
      */
     native void cancel() throws COMException;
 }

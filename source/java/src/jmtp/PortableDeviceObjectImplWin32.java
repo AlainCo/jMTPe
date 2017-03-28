@@ -58,8 +58,6 @@ class PortableDeviceObjectImplWin32 implements PortableDeviceObject {
     
     /**
      * Een String property opvragen.
-     * @param key
-     * @return
      */
     protected String retrieveStringValue(PropertyKey key) {
     	try {
