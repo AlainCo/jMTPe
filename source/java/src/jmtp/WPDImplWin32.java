@@ -69,7 +69,7 @@ class WPDImplWin32 {
     
     
     private static PortableDeviceKeyCollectionImplWin32 keyCollection;
-    private static Object lock = new Object();
+    private static final Object lock = new Object();
     
     static PortableDeviceObjectImplWin32 convertToPortableDeviceObject(String objectID, 
     		PortableDeviceContentImplWin32 content,
