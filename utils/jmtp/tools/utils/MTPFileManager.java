@@ -1,15 +1,12 @@
-package de.aok.no.kopra.agnes.mtp;
+package jmtp.tools.utils;
 
+import be.derycke.pieter.com.COMException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-
-import de.aok.no.kopra.agnes.desktop.util.LogUtil;
-import de.aok.no.kopra.agnes.desktop.util.PathUtil;
-
 import jmtp.PortableDevice;
 import jmtp.PortableDeviceAudioObject;
 import jmtp.PortableDeviceFolderObject;
@@ -17,17 +14,9 @@ import jmtp.PortableDeviceManager;
 import jmtp.PortableDeviceObject;
 import jmtp.PortableDeviceStorageObject;
 import jmtp.PortableDeviceToHostImpl32;
-import be.derycke.pieter.com.COMException;
 
-/**
- * @author Philipp Ebert
- * 
- *         Handles MTP device operation logic
- */
-public class MTPFileManager {
-
-	boolean debug = false;
-
+public class MTPFileManager implements AutoCloseable
+{
 	private PortableDevice device;
 
 	public PortableDevice getDevice() {
@@ -39,7 +28,7 @@ public class MTPFileManager {
 		device.open();
 	}
 
-	public void closeDevice() {
+	public void close() {
 		if (device != null) {
 			device.close();
 			device = null;
@@ -47,13 +36,10 @@ public class MTPFileManager {
 	}
 
 	public synchronized boolean isOpen() {
-		if (device != null) {
-			return true;
-		}
-		return false;
+		return device != null;
 	}
 
-	public void addFile(File file, String mtpPath) throws FileNotFoundException, IOException, COMException {
+	public void addFile(File file, String mtpPath) throws IOException {
 		deleteFile(file.getName(), mtpPath);
 
 		String lastpartofpath = mtpPath.substring(mtpPath.lastIndexOf("\\") + 1);
@@ -62,41 +48,36 @@ public class MTPFileManager {
 
 		PortableDeviceAudioObject object = folder.addAudioObject(file, "--", "--", new BigInteger("0"));
 
-		LogUtil.debugPrint(LogUtil.LOG_LEVEL_LESS, this.getClass().getSimpleName(), "Copied " + file.getAbsolutePath() + " to " + mtpPath
-				+ " on " + getDevice().getModel());
+		System.out.println("Copied " + file.getAbsolutePath() + " to " + mtpPath + " on " + getDevice().getModel());
 	}
 
-	public ArrayList<PortableDeviceObject> getFiles(String path) throws COMException {
+	public ArrayList<PortableDeviceObject> getFiles(String path) {
 		String lastpartofpath = path.substring(path.lastIndexOf("\\") + 1);
 		PortableDeviceStorageObject storage = getStorage();
 		PortableDeviceFolderObject folder = MTPUtil.createFolder(path, storage, null, lastpartofpath);
 
-		ArrayList<PortableDeviceObject> newFiles = new ArrayList<PortableDeviceObject>();
+		ArrayList<PortableDeviceObject> newFiles = new ArrayList<>();
 
-		for (PortableDeviceObject object : folder.getChildObjects()) {
-			newFiles.add(object);
-		}
+		newFiles.addAll(Arrays.asList(folder.getChildObjects()));
 		return newFiles;
-
 	}
 
-	public ArrayList<PortableDeviceObject> getNewFiles(Date lastChecked, String path) throws COMException {
+	public ArrayList<PortableDeviceObject> getNewFiles(Date lastChecked, String path) {
 		String lastpartofpath = path.substring(path.lastIndexOf("\\") + 1);
 		PortableDeviceStorageObject storage = getStorage();
 		PortableDeviceFolderObject folder = MTPUtil.createFolder(path, storage, null, lastpartofpath);
 
-		ArrayList<PortableDeviceObject> newFiles = new ArrayList<PortableDeviceObject>();
+		ArrayList<PortableDeviceObject> newFiles = new ArrayList<>();
 
 		for (PortableDeviceObject object : folder.getChildObjects()) {
-			if (object.getDateModified()!=null && object.getDateModified().after(lastChecked)) {
+			if (object.getDateModified() != null && object.getDateModified().after(lastChecked)) {
 				newFiles.add(object);
 			}
 		}
 		return newFiles;
-
 	}
 
-	public PortableDeviceObject findFile(String name, String path) throws COMException {
+	public PortableDeviceObject findFile(String name, String path) {
 		PortableDeviceStorageObject storage = getStorage();
 		PortableDeviceFolderObject folder;
 
@@ -116,6 +97,7 @@ public class MTPFileManager {
 				}
 			}
 		} else {
+			if (storage == null) return null;
 			for (PortableDeviceObject object : storage.getChildObjects()) {
 				if (object.getOriginalFileName().equals(name)) {
 					return object;
@@ -130,7 +112,7 @@ public class MTPFileManager {
 		new PortableDeviceToHostImpl32().copyFromPortableDeviceToHost(objectId, destPath, device);
 	}
 
-	public boolean deleteFile(String name, String path) throws COMException {
+	public boolean deleteFile(String name, String path) {
 		PortableDeviceObject fileObject = findFile(name, path);
 
 		if (fileObject != null && fileObject.canDelete()) {
@@ -140,7 +122,7 @@ public class MTPFileManager {
 		return false;
 	}
 
-	public void deleteAllFiles(String path) throws COMException {
+	public void deleteAllFiles(String path) {
 		String lastpartofpath = path.substring(path.lastIndexOf("\\") + 1);
 		PortableDeviceStorageObject storage = getStorage();
 
@@ -153,14 +135,14 @@ public class MTPFileManager {
 		}
 	}
 
-	public void createFolder(String path) throws COMException {
+	public void createFolder(String path) {
 		String lastpartofpath = path.substring(path.lastIndexOf("\\") + 1);
 		PortableDeviceStorageObject storage = getStorage();
 		MTPUtil.createFolder(path, storage, null, lastpartofpath);
 	}
 
 	public ArrayList<String> getAllFilesByName(String path) {
-		ArrayList<String> fileNames = new ArrayList<String>();
+		ArrayList<String> fileNames = new ArrayList<>();
 
 		String lastpartofpath = path.substring(path.lastIndexOf("\\") + 1);
 		PortableDeviceStorageObject storage = getStorage();
@@ -189,12 +171,10 @@ public class MTPFileManager {
 			for (PortableDeviceObject object : device.getRootObjects()) {
 
 				if (object instanceof PortableDeviceStorageObject) {
-					PortableDeviceStorageObject storage = (PortableDeviceStorageObject) object;
-					return storage;
+					return (PortableDeviceStorageObject) object;
 				}
 			}
 		}
 		return null;
 	}
-
 }
