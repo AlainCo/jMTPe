@@ -122,9 +122,9 @@ public class PropertyKeyReader {
     	try {
     		try {
     			File sourceFile = new File(outputDirectory.getAbsoluteFile(), className + ".java");
-    	    	sourceFile.createNewFile();
-    	    	
-    			writer = new OutputStreamWriter(new FileOutputStream(sourceFile));
+				if (!sourceFile.createNewFile()) throw new IOException("Couldn't create new source file: " + sourceFile.toString());
+
+				writer = new OutputStreamWriter(new FileOutputStream(sourceFile));
     			if(packageName != null) {
     				writer.write("package " + packageName + ";\n");
     				writer.write("\n");

@@ -19,6 +19,8 @@
 
 package be.derycke.pieter.com;
 
+import java.util.Arrays;
+
 /**
  * http://en.wikipedia.org/wiki/Globally_Unique_Identifier
  * @author Pieter De Rycke
@@ -95,7 +97,7 @@ public class Guid {
         hash = 97 * hash + (int) (this.data1 ^ (this.data1 >>> 32));
         hash = 97 * hash + this.data2;
         hash = 97 * hash + this.data3;
-        hash = 97 * hash + (this.data4 != null ? this.data4.hashCode() : 0);
+        hash = 97 * hash + (this.data4 != null ? Arrays.hashCode(this.data4) : 0);
         return hash;
     }
     

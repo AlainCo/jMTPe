@@ -46,11 +46,10 @@ public class COMReference {
             @Override
             public void run() {
                 synchronized(lock) {
-                    for(WeakReference<COMReference> reference : references) {
-                    	try {
-	                    	reference.get().release();
-                    	}
-                    	catch(NullPointerException e) {}
+                    for (WeakReference<COMReference> reference : references) {
+                        final COMReference comReference = reference.get();
+                        if (comReference == null) continue;
+                        comReference.release();
                     }
                 }
             }
