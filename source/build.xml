@@ -1,16 +1,33 @@
-<project name="gdata-src" default="build" basedir=".">
-	<target name="build" depends="">
-		<!-- Build java classes and create jar -->
+<project name="gdata-src" default="all" basedir=".">
+	<target name="all" depends="clean,build">
+	</target>
+
+	<target name="clean">
+		<delete dir="java/bin"/>
+		<delete dir="c++/Release"/>
+		<delete dir="c++/x64/Release"/>
+		<delete dir="dist"/>
+	</target>
+
+	<target name="java">
+		<mkdir dir="java/bin"/>
+		<mkdir dir="dist"/>
 		<javac sourcepath="" srcdir="java/src" destdir="java/bin"
-			includeAntRuntime="false"/>
+			   includeAntRuntime="false"/>
 		<jar destfile="dist/jmtp.jar" basedir="java/bin"/>
-		
-		<!-- Build the visual studio project with the Microsft Build Tool -->
+	</target>
+
+	<target name="cpp32">
+		<mkdir dir="dist"/>
 		<exec executable="msbuild">
 			<arg value="/property:Configuration=Release"/>
+			<arg value="/property:Platform=Win32"/>
 			<arg value="c++/jmtp.sln"/>
 		</exec>
-		
-		<copy file="c++/Release/jmtp.dll" todir="dist"/>
+
+		<copy file="c++/Release/jmtp.dll" tofile="dist/jtmp32.dll"/>
+	</target>
+
+	<target name="build" depends="java,cpp32">
 	</target>
 </project>
