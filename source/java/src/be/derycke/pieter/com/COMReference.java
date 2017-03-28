@@ -34,7 +34,7 @@ public class COMReference {
     
     static {
         lock = new Object();
-        references = new HashSet<WeakReference<COMReference>>();
+        references = new HashSet<>();
         
         //dit wordt nog voor de finalizers aangeroepen als finalizen 
         //bij exit aan staat
@@ -62,7 +62,7 @@ public class COMReference {
     
     public COMReference(long pIUnkown) {
         this.pIUnknown = pIUnkown;
-        reference = new WeakReference<COMReference>(this);
+        reference = new WeakReference<>(this);
         
         synchronized(lock) {
             references.add(reference);

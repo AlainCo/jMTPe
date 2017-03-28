@@ -46,7 +46,7 @@ class PortableDeviceManagerImplWin32 implements PortableDeviceManagerProxy {
         try {
             pDeviceManager = COM.CoCreateInstance(WPDImplWin32.CLSID_PortableDeviceManager, 
                     0, COM.CLSCTX_INPROC_SERVER, WPDImplWin32.IID_IPortableDeviceManager);
-            deviceMap = new HashMap<String, PortableDeviceImplWin32>();
+            deviceMap = new HashMap<>();
         }
         catch (Exception e) {
             throw new RuntimeException("probleem met de com");
@@ -61,7 +61,7 @@ class PortableDeviceManagerImplWin32 implements PortableDeviceManagerProxy {
         try {
             String[] devices = getDevicesImpl();
 
-            Set<String> deviceSet = new HashSet<String>();
+            Set<String> deviceSet = new HashSet<>();
             for (String deviceID : devices) {
                 if(!deviceMap.containsKey(deviceID))
                     deviceMap.put(deviceID, new PortableDeviceImplWin32(pDeviceManager, deviceID));
