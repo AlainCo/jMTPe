@@ -57,11 +57,11 @@ public class Guid {
     }
     
     private String toBinaryString(int number) {
-        String temp = Integer.toHexString(number);
+        StringBuilder temp = new StringBuilder(Integer.toHexString(number));
         int length = temp.length();
         for(int i = 0; i < 4 - length; i++)
-            temp += "0" + temp;
-        return temp;
+            temp.append("0").append(temp);
+        return temp.toString();
     }
     
     private String toBinaryString(short number) {
@@ -103,10 +103,10 @@ public class Guid {
     public String toString() {
         String guid = "";
         
-        String partGuid = Long.toHexString(data1);
+        StringBuilder partGuid = new StringBuilder(Long.toHexString(data1));
         int length = partGuid.length();
         for(int i = 0; i < 8 - length; i++)
-            partGuid += "0" + partGuid;
+            partGuid.append("0").append(partGuid);
         guid += partGuid + "-";
         
         guid += toBinaryString(data2) + "-";

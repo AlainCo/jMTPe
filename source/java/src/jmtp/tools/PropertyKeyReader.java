@@ -61,8 +61,7 @@ public class PropertyKeyReader {
                         
                         String name = defineParts[0];
                         String[] arguments = new String[defineParts.length - 1];
-                        for(int i = 1; i < defineParts.length; i++)
-                            arguments[i - 1] = defineParts[i];
+						System.arraycopy(defineParts, 1, arguments, 0, defineParts.length - 1);
                         
                         processPropertyKey(name, arguments);
     				}
@@ -71,8 +70,7 @@ public class PropertyKeyReader {
                         
                         String name = defineParts[0];
                         String[] arguments = new String[defineParts.length - 1];
-                        for(int i = 1; i < defineParts.length; i++)
-                            arguments[i - 1] = defineParts[i];
+						System.arraycopy(defineParts, 1, arguments, 0, defineParts.length - 1);
                         
                         processGuid(name, arguments);
                     }
