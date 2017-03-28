@@ -27,8 +27,8 @@ import be.derycke.pieter.com.Guid;
  */
 class PropertyKey {
     
-    private Guid fmtid;
-    private long pid;
+    private final Guid fmtid;
+    private final long pid;
     
     public PropertyKey(Guid fmtid, long pid) {
         this.fmtid = fmtid;

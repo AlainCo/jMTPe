@@ -29,7 +29,7 @@ import java.util.Set;
  */
 public class COMReference {
     
-    private static       Set<WeakReference<COMReference>> references;
+    private static final Set<WeakReference<COMReference>> references;
     private static final Object                           lock;
     
     static {

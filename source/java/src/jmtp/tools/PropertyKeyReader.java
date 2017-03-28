@@ -40,7 +40,7 @@ public class PropertyKeyReader {
     
     private static final boolean PRINT_COMMENTS = false;
     
-    private StringBuilder buffer;
+    private final StringBuilder buffer;
     
     public PropertyKeyReader(File header) {
     	buffer = new StringBuilder();

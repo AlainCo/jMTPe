@@ -29,7 +29,7 @@ import be.derycke.pieter.com.COMReference;
 class PortableDevicePropertiesImplWin32 {
     
 	@SuppressWarnings("unused")
-	private COMReference pDeviceProperties;
+	private final COMReference pDeviceProperties;
     
     PortableDevicePropertiesImplWin32(COMReference pDeviceProperties) {
         this.pDeviceProperties = pDeviceProperties;

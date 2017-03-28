@@ -60,7 +60,7 @@ public class COMException extends Exception {
 	public static final int FACILITY_WINDOWS = 8;
 	public static final int FACILITY_WPD = 42;
     
-    private int hresult;
+    private final int hresult;
     
     public COMException(String message, int hresult) {
         super(message);

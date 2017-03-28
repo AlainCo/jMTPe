@@ -96,7 +96,7 @@ class PortableDeviceManagerImplWin32 implements PortableDeviceManagerProxy {
     
     private class PortableDeviceIterator implements Iterator<PortableDevice> {
         
-        private Iterator<String> iterator;
+        private final Iterator<String> iterator;
         
         public PortableDeviceIterator() {
             getDevices();   //de map met devices updaten

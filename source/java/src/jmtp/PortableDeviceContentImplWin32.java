@@ -30,7 +30,7 @@ import java.io.File;
 class PortableDeviceContentImplWin32 {
     
     @SuppressWarnings("unused")
-	private COMReference pDeviceContent;
+	private final COMReference pDeviceContent;
     
     PortableDeviceContentImplWin32(COMReference pDeviceContent) {
         this.pDeviceContent = pDeviceContent;

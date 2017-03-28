@@ -31,11 +31,11 @@ import be.derycke.pieter.com.COMReference;
  */
 class PortableDeviceImplWin32 implements PortableDevice {
     
-    private String deviceID;
+    private final String       deviceID;
     @SuppressWarnings("unused")
-	private COMReference pDeviceManager;
+	private final COMReference pDeviceManager;
     @SuppressWarnings("unused")
-	private COMReference pDevice;
+	private       COMReference pDevice;
     
     private PortableDeviceContentImplWin32 content;
     private PortableDevicePropertiesImplWin32 properties;

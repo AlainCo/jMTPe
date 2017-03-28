@@ -32,12 +32,12 @@ import be.derycke.pieter.com.OleDate;
  */
 class PortableDeviceObjectImplWin32 implements PortableDeviceObject {
     
-    protected PortableDeviceContentImplWin32 content;
-    protected PortableDevicePropertiesImplWin32 properties;
-    protected PortableDeviceKeyCollectionImplWin32 keyCollection;
-    protected PortableDeviceValuesImplWin32 values;
+    protected final PortableDeviceContentImplWin32       content;
+    protected final PortableDevicePropertiesImplWin32    properties;
+    protected       PortableDeviceKeyCollectionImplWin32 keyCollection;
+    protected       PortableDeviceValuesImplWin32        values;
     
-    protected String objectID;
+    protected final String objectID;
     
     PortableDeviceObjectImplWin32(String objectID, 
             PortableDeviceContentImplWin32 content,

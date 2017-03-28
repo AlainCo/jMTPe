@@ -32,8 +32,8 @@ class PropVariant {
     public static final int VT_LPWSTR = 31;	//A pointer to a null-terminated Unicode string in the user default locale.
     
     
-    private int vt;
-    private Object value;
+    private final int    vt;
+    private final Object value;
 
     private PropVariant(int vt, Object value) {
         this.vt = vt;
