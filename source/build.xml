@@ -7,6 +7,10 @@
 		<delete dir="c++/Release"/>
 		<delete dir="c++/x64/Release"/>
 		<delete dir="dist"/>
+		<delete>
+			<fileset dir="c++/src" includes="be_derycke_pieter_com_*.g"/>
+			<fileset dir="c++/src" includes="jmtp_PortableDevice*.h"/>
+		</delete>
 	</target>
 
 	<target name="java">
@@ -17,7 +21,24 @@
 		<jar destfile="dist/jmtp.jar" basedir="java/bin"/>
 	</target>
 
-	<target name="cpp32">
+	<target name="header" depends="java">
+		<javah destdir="c++/src" classpath="java/bin">
+			<class name="be.derycke.pieter.com.COM"/>
+			<class name="be.derycke.pieter.com.COMReference"/>
+			<class name="be.derycke.pieter.com.OleDate"/>
+			<class name="jmtp.PortableDeviceContentImplWin32"/>
+			<class name="jmtp.PortableDeviceImplWin32"/>
+			<class name="jmtp.PortableDeviceKeyCollectionImplWin32"/>
+			<class name="jmtp.PortableDeviceManagerImplWin32"/>
+			<class name="jmtp.PortableDeviceManagerImplWin32.PortableDeviceIterator"/>
+			<class name="jmtp.PortableDevicePropertiesImplWin32"/>
+			<class name="jmtp.PortableDevicePropVariantCollectionImplWin32"/>
+			<class name="jmtp.PortableDeviceToHostImpl32"/>
+			<class name="jmtp.PortableDeviceValuesImplWin32"/>
+		</javah>
+	</target>
+
+	<target name="cpp32" depends="header">
 		<mkdir dir="dist"/>
 		<exec executable="msbuild">
 			<arg value="/property:Configuration=Release"/>

@@ -5,3 +5,5 @@
 /source/c++/Debug/
 /source/c++/.vs
 /source/dist
+/source/c++/src/be_derycke_pieter_com_*.h
+/source/c++/src/jmtp_PortableDevice*.h
