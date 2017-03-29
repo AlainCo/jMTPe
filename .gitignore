@@ -7,3 +7,7 @@
 /source/dist
 /source/c++/src/be_derycke_pieter_com_*.h
 /source/c++/src/jmtp_PortableDevice*.h
+/source/c++/ipch/
+/source/c++/UpgradeLog.XML
+/source/c++/*.user
+/source/c++/*.old
