@@ -35,7 +35,15 @@ import java.util.Set;
 class PortableDeviceManagerImplWin32 implements PortableDeviceManagerProxy {
     
     static {
-        System.loadLibrary("jmtp");
+        if(System.getProperty("os.arch").contains("64")) {
+            System.out.println("Loading 64bit library");
+            System.loadLibrary("jmtp64");
+        }
+        else {
+            System.out.println("Loading 32bit library");
+            System.loadLibrary("jmtp32");
+        }
+
     }
     
     private COMReference pDeviceManager;

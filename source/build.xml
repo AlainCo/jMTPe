@@ -1,5 +1,5 @@
 <project name="gdata-src" default="all" basedir=".">
-	<target name="all" depends="clean,build">
+	<target name="all" depends="clean,build,publish">
 	</target>
 
 	<target name="clean">
