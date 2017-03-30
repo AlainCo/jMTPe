@@ -5,7 +5,7 @@
 	<target name="clean">
 		<delete dir="java/bin"/>
 		<delete dir="c++/Release"/>
-		<delete dir="c++/x64/Release"/>
+		<delete dir="c++/Debug"/>
 		<delete dir="dist"/>
 		<delete>
 			<fileset dir="c++/src" includes="be_derycke_pieter_com_*.g"/>
@@ -16,8 +16,7 @@
 	<target name="java">
 		<mkdir dir="java/bin"/>
 		<mkdir dir="dist"/>
-		<javac sourcepath="" srcdir="java/src" destdir="java/bin"
-			   includeAntRuntime="false"/>
+		<javac sourcepath="" srcdir="java/src" destdir="java/bin" failonerror="true" includeAntRuntime="false"/>
 		<jar destfile="dist/jmtp.jar" basedir="java/bin"/>
 	</target>
 
@@ -40,13 +39,13 @@
 
 	<target name="cpp32" depends="header">
 		<mkdir dir="dist"/>
-		<exec executable="msbuild">
+		<exec executable="msbuild" failonerror="true">
 			<arg value="/property:Configuration=Release"/>
 			<arg value="/property:Platform=Win32"/>
 			<arg value="c++/jmtp.sln"/>
 		</exec>
 
-		<copy file="c++/Release/jmtp.dll" tofile="dist/jtmp32.dll"/>
+		<copy file="c++/Release/Win32/jmtp.dll" tofile="dist/jtmp32.dll"/>
 	</target>
 
 	<target name="build" depends="java,cpp32">
