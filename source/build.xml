@@ -48,6 +48,25 @@
 		<copy file="c++/Release/Win32/jmtp.dll" tofile="dist/jtmp32.dll"/>
 	</target>
 
-	<target name="build" depends="java,cpp32">
+	<target name="cpp64" depends="header">
+		<mkdir dir="dist"/>
+		<exec executable="msbuild" failonerror="true">
+			<arg value="/property:Configuration=Release"/>
+			<arg value="/property:Platform=x64"/>
+			<arg value="c++/jmtp.sln"/>
+		</exec>
+
+		<copy file="c++/Release/x64/jmtp.dll" tofile="dist/jmtp64.dll"/>
+	</target>
+
+	<target name="build" depends="java,cpp32,cpp64">
+	</target>
+
+	<target name="publish">
+		<delete dir="../binaries"/>
+		<mkdir dir="../binaries"/>
+		<copy todir="../binaries">
+			<fileset dir="dist" includes="*"/>
+		</copy>
 	</target>
 </project>
