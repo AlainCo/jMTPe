@@ -48,7 +48,7 @@ JNIEXPORT jstring JNICALL Java_jmtp_PortableDeviceImplWin32_getDeviceFriendlyNam
 	pDeviceManager->GetDeviceFriendlyName(wszDeviceID, NULL, &length);
 	wszDeviceFriendlyName = new WCHAR[length + 1];
 	pDeviceManager->GetDeviceFriendlyName(wszDeviceID, wszDeviceFriendlyName, &length);	
-	friendlyName = env->NewString((jchar*)wszDeviceFriendlyName, wcslen(wszDeviceFriendlyName));
+	friendlyName = env->NewString((jchar*)wszDeviceFriendlyName, (jsize)wcslen(wszDeviceFriendlyName));
 
 	env->ReleaseStringChars(deviceID, (jchar*)wszDeviceID);
 	delete wszDeviceFriendlyName;
@@ -71,7 +71,7 @@ JNIEXPORT jstring JNICALL Java_jmtp_PortableDeviceImplWin32_getDeviceManufacture
 	pDeviceManager->GetDeviceManufacturer(wszDeviceID, NULL, &length);
 	wszDeviceManufacturer = new WCHAR[length + 1];
 	pDeviceManager->GetDeviceManufacturer(wszDeviceID, wszDeviceManufacturer, &length);	
-	manufacturer = env->NewString((jchar*)wszDeviceManufacturer, wcslen(wszDeviceManufacturer));
+	manufacturer = env->NewString((jchar*)wszDeviceManufacturer, (jsize)wcslen(wszDeviceManufacturer));
 
 	env->ReleaseStringChars(deviceID, (jchar*)wszDeviceID);
 	delete wszDeviceManufacturer;
@@ -94,7 +94,7 @@ JNIEXPORT jstring JNICALL Java_jmtp_PortableDeviceImplWin32_getDeviceDescription
 	pDeviceManager->GetDeviceDescription(wszDeviceID, NULL, &length);
 	wszDeviceDescription = new WCHAR[length + 1];
 	pDeviceManager->GetDeviceDescription(wszDeviceID, wszDeviceDescription, &length);	
-	description = env->NewString((jchar*)wszDeviceDescription, wcslen(wszDeviceDescription));
+	description = env->NewString((jchar*)wszDeviceDescription, (jsize)wcslen(wszDeviceDescription));
 
 	env->ReleaseStringChars(deviceID, (jchar*)wszDeviceID);
 	delete wszDeviceDescription;

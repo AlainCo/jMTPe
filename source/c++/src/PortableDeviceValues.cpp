@@ -121,7 +121,7 @@ JNIEXPORT jstring JNICALL Java_jmtp_PortableDeviceValuesImplWin32_getStringValue
 
 		if(SUCCEEDED(hr))
 		{
-			jsValue = env->NewString((jchar*)wszValue, wcslen(wszValue));
+			jsValue = env->NewString((jchar*)wszValue, (jsize)wcslen(wszValue));
 			CoTaskMemFree(wszValue);
 			return jsValue;
 		}

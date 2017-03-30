@@ -95,7 +95,7 @@ JNIEXPORT jstring JNICALL Java_jmtp_PortableDeviceContentImplWin32_createObjectW
 			if(SUCCEEDED(hr))
 			{
 				pDeviceDataStream->GetObjectID(&wszObjectID);
-				jsObjectID = (jstring)env->NewString((jchar*)wszObjectID, wcslen(wszObjectID));
+				jsObjectID = (jstring)env->NewString((jchar*)wszObjectID, (jsize)wcslen(wszObjectID));
 				CoTaskMemFree(wszObjectID);
 				return jsObjectID;
 			}
@@ -137,7 +137,7 @@ JNIEXPORT jstring JNICALL Java_jmtp_PortableDeviceContentImplWin32_createObjectW
 
 		if(SUCCEEDED(hr))
 		{
-			jsObjectID = (jstring)env->NewString((jchar*)wszObjectID, wcslen(wszObjectID));
+			jsObjectID = (jstring)env->NewString((jchar*)wszObjectID, (jsize)wcslen(wszObjectID));
 			CoTaskMemFree(wszObjectID);
 			return jsObjectID;
 		}
@@ -213,11 +213,11 @@ JNIEXPORT jobjectArray JNICALL Java_jmtp_PortableDeviceContentImplWin32_listChil
 		}
 		delete[] wszObjectID;
 
-		jobjaChildArray = env->NewObjectArray(childList.size(), env->FindClass("Ljava/lang/String;"), NULL);
+		jobjaChildArray = env->NewObjectArray((jsize)childList.size(), env->FindClass("Ljava/lang/String;"), NULL);
 		int i = 0;
 		for (iterator = childList.begin(); iterator != childList.end(); iterator++)
 		{
-			env->SetObjectArrayElement(jobjaChildArray, i, env->NewString((jchar*)*iterator, wcslen(*iterator)));
+			env->SetObjectArrayElement(jobjaChildArray, i, env->NewString((jchar*)*iterator, (jsize)wcslen(*iterator)));
 			CoTaskMemFree(*iterator);
 			i++;
 		}

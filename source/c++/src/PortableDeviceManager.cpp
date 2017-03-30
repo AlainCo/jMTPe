@@ -52,7 +52,7 @@ JNIEXPORT jobjectArray JNICALL Java_jmtp_PortableDeviceManagerImplWin32_getDevic
 		{
 			jobjaDeviceIDs = env->NewObjectArray(dwCount, env->FindClass("java/lang/String"), NULL);
 			for(DWORD i = 0; i < dwCount; i++) {
-				env->SetObjectArrayElement(jobjaDeviceIDs, i, env->NewString((jchar*)deviceIDs[i], wcslen(deviceIDs[i])));
+				env->SetObjectArrayElement(jobjaDeviceIDs, i, env->NewString((jchar*)deviceIDs[i], (jsize)wcslen(deviceIDs[i])));
 				CoTaskMemFree(deviceIDs[i]);
 			}
 		}

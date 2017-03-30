@@ -32,7 +32,7 @@ void ThrowCOMException(JNIEnv* env, LPWSTR message, HRESULT hr)
 
 	cls = env->FindClass("be/derycke/pieter/com/COMException");
 	mid = env->GetMethodID(cls, "<init>", "(Ljava/lang/String;I)V");
-	jsMessage = env->NewString((jchar*)message, wcslen(message));
+	jsMessage = env->NewString((jchar*)message, (jsize)wcslen(message));
 	exception = env->NewObject(cls, mid, jsMessage, (jint)hr);
 	env->Throw((jthrowable)exception);
 }
@@ -121,7 +121,7 @@ jobject ConvertPropVariantToJava(JNIEnv* env, PROPVARIANT pv)
 		//methode implementatie
 		cls = env->FindClass("jmtp/PropVariant");
 		mid = env->GetMethodID(cls, "<init>", "(Ljava/lang/String;)V");
-		jsValue = env->NewString((jchar*)pv.pwszVal, wcslen(pv.pwszVal));
+		jsValue = env->NewString((jchar*)pv.pwszVal, (jsize)wcslen(pv.pwszVal));
 		return env->NewObject(cls, mid, jsValue);
 	}
 	else
