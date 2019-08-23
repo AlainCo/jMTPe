@@ -2,9 +2,11 @@ jMTPe64
 =======
 
 Extended version of JMTP (https://code.google.com/p/jmtp/ (offline), copy https://github.com/Kurukshetran/jmtp) that adds the ability to copy files from the device to the host.
+
 Extended version of JMTPe (https://github.com/ultrah/jMTPe) that adds a 64bit dll.
-Refactored version of JMTPe64 (https://github.com/mheinzerling/jMTPe) with Maven and maven NAR plugin. 
-tiny refactor with comme interface PortableDeviceContainer between Folder and Storage
+
+Refactored version of JMTPe64 (https://github.com/mheinzerling/jMTPe) with Maven and maven NAR plugin.
+Tiny refactor with comme interface PortableDeviceContainer between Folder and Storage
 
 Compile
 =======
